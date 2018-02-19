@@ -4,13 +4,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # FUNCTIONS
-awspersonal () {
+awspersonal () { # short for adding aws personal profile
   AWS_PROFILE=personal ${@}
 }
-dockerc () {
+dockerc () { # short form docker-compose
   docker-compose ${@}
 }
-dockerm () {
+dockerm () { # remove all dangling images, images with no tag
   docker rmi -f $(docker images | grep \"^<none>\" | awk '{print $3}')
 }
 
