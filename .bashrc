@@ -11,7 +11,9 @@ dockerc () { # short form docker-compose
   docker-compose ${@}
 }
 dockerm () { # remove all dangling images, images with no tag
-  docker rmi -f $(docker images | grep \"^<none>\" | awk '{print $3}')
+  IMAGES=$(docker images | grep "^<none>" | awk '{print $3}')
+  [[ -z "${IMAGES}" ]] && echo "there are no danglign images to remove"
+  [[ -z "${IMAGES}" ]] || docker rmi -f ${IMAGES}
 }
 
 # ALIASES
