@@ -4,16 +4,25 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # FUNCTIONS
-awspersonal () { # short for adding aws personal profile
+# short for adding aws personal profile
+awspersonal () {                    
   AWS_PROFILE=personal ${@}
 }
-dockerc () { # short form docker-compose
+# short form docker-compose
+dockerc () {                        
   docker-compose ${@}
 }
-dockerm () { # remove all dangling images, images with no tag
+# remove all dangling images, images with no tag
+dockerm () {                        
   IMAGES=$(docker images | grep "^<none>" | awk '{print $3}')
   [[ -z "${IMAGES}" ]] && echo "there are no danglign images to remove"
   [[ -z "${IMAGES}" ]] || docker rmi -f ${IMAGES}
+}
+# remove all exited containers
+dockerd () {                        
+  CONTS=$(docker container ls -f status=exited -q)
+  [[ -z "${CONTS}" ]] && echo "there are no exited containers to remove"
+  [[ -z "${CONTS}" ]] || docker container rm ${CONTS}
 }
 
 # ALIASES
@@ -21,6 +30,8 @@ alias ll="ls -al"
 alias awspersonal=awspersonal
 alias dockerc=dockerc
 alias dockerm=dockerm
+alias dockerd=dockerd
+alias hlpr=/Users/pedro-local/Sites/rocky/helper.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
