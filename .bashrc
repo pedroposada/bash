@@ -1,3 +1,5 @@
+# change my bash prompt to show my working directory
+PS1='\w\$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -31,7 +33,7 @@ alias awspersonal=awspersonal
 alias dockerc=dockerc
 alias dockerm=dockerm
 alias dockerd=dockerd
-alias hlpr=/Users/pedro-local/Sites/rocky/helper.sh
+alias hlpr=~/Sites/rocky/helper.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
